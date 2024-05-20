@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { colors } from './ds/colors'
