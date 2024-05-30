@@ -1,8 +1,16 @@
 import React, { useState, useRef, ReactNode } from 'react'
-import { View, TouchableOpacity, StyleSheet, LayoutAnimation, ImageStyle } from 'react-native'
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  LayoutAnimation,
+  ImageStyle,
+  ScrollView,
+  Text
+} from 'react-native'
 import * as Animatable from 'react-native-animatable'
 
-import Text from './Text'
+import { Text as CustomText } from './Text'
 import icon from '../../assets/profileIcon.png'
 import { toggleAnimation } from '../animations/toggleAnimation'
 
@@ -50,15 +58,25 @@ const ExpandableSection = ({ title, description, children }: ExpandableSectionPr
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={toggleExpanded} style={styles.header}>
-        <Text typeface='H4'>{title}</Text>
+        <View style={styles.titleContainer}>
+          <Text
+            numberOfLines={expanded ? undefined : 1}
+            ellipsizeMode={expanded ? undefined : 'tail'}
+            style={styles.title}
+          >
+            {title}
+          </Text>
+        </View>
         <Animatable.Image ref={imageRef} source={icon} style={styles.img} useNativeDriver={true} />
       </TouchableOpacity>
       {expanded && (
         <Animatable.View style={styles.content} useNativeDriver>
           {description && (
-            <Text typeface='P3' style={styles.descriptionText}>
-              {description}
-            </Text>
+            <ScrollView style={styles.descriptionContainer}>
+              <CustomText typeface='P3' style={styles.descriptionText}>
+                {description}
+              </CustomText>
+            </ScrollView>
           )}
           {children}
         </Animatable.View>
@@ -84,9 +102,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
+  descriptionContainer: {
+    maxHeight: 150,
+    marginBottom: 20
+  },
   title: {
     color: '#fff',
-    fontSize: 16
+    fontSize: 16,
+    fontWeight: 'bold'
   },
   content: {
     borderRadius: 5,
@@ -97,8 +120,11 @@ const styles = StyleSheet.create({
     fontWeight: 400,
     fontSize: 12,
     color: 'rgba(194, 195, 199, 1)',
-    lineHeight: 18,
-    marginBottom: 24
+    lineHeight: 18
+  },
+  titleContainer: {
+    flex: 1,
+    marginRight: 10
   }
 })
 

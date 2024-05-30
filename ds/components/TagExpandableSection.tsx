@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8
+    gap: 8,
+    marginTop: 8
   }
 })
 
