@@ -2,7 +2,7 @@
 
 ## Completed By
 
-{{Yelyzaveta Demchenko}}
+Yelyzaveta Demchenko
 
 ## Video Demo
 
